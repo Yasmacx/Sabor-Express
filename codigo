@@ -1,0 +1,96 @@
+import os
+
+restaurantes = [{'nome': 'Mcdonald', 'categoria': 'Lanches', 'ativo':True},
+               {'nome': 'Pizarria Master', 'categoria': 'Italiana', 'ativo':False},
+               {'nome': 'Arabialanches', 'categoria': 'Arabe', 'ativo':False}] #dados globais
+#dicionarios seperado por virgula
+
+def voltar_menu():
+    input("Digite qualquer tecla para ir ao menu principal ")
+    main()
+
+def subtitulo(texto):
+    print("\n" * 100)
+    print(texto)
+    print()
+
+def iniciar():
+    print("""
+ █▀▀▀█ █▀▀█ █▀▀▄ █▀▀█ █▀▀█ 　 ▒█▀▀▀ █ █ █▀▀█ █▀▀█ █▀▀ █▀▀ █▀▀ 
+ ▀▀▀▄▄ █▄▄█ █▀▀▄ █  █ █▄▄▀ 　 ▒█▀▀▀ ▄▀▄ █  █ █▄▄▀ █▀▀ ▀▀█ ▀▀█ 
+ █▄▄▄█ ▀  ▀ ▀▀▀  ▀▀▀▀ ▀ ▀▀ 　 ▒█▄▄▄ ▀ ▀ █▀▀▀ ▀ ▀▀ ▀▀▀ ▀▀▀ ▀▀▀\n""")
+
+def opcoes():
+    print("1.Cadastrar restaurante")
+    print("2.Listar restaurantes")
+    print("3.Ativar restaurante")
+    print("4.Sair\n")
+
+def cadastrar_restaurante():
+    print("\n" * 100)
+    subtitulo('Cadastrar restaurante')
+    nome_dos_restaurantes = input("Digite o nome do restaurantes que deseja cadastrar: ")
+    restaurantes.append(nome_dos_restaurantes)
+    print(f"O restaurante: {nome_dos_restaurantes} foi cadastrado com sucesso!\n")
+    voltar_menu()
+    main()
+
+    # append add dados na lista = o input que vai guardar o dados da lista
+    #para voltar ao def principal
+
+def listar_restaurante():
+    print("\n" * 100)
+    subtitulo('Listar restaurantes')
+
+    print('Nome / Categoria / Status\n2')
+
+    for restaurante in restaurantes:
+        nome_restaurante = restaurante['nome']
+        tipo_resturante = restaurante['categoria']
+        ativo_restaurante = restaurante['ativo']
+        print(f"- {nome_restaurante} | {tipo_resturante} | {ativo_restaurante}")
+    voltar_menu()
+
+def opcao_invalida():
+    print("\n" * 100)
+    print("Escolha invalida!")
+    voltar_menu()
+
+def input_usuario():
+    try: #ele volta a fazer isso quando o usuario nao coloca o mesmo tipo de caractere
+        while True:
+            usuario = int(input("Escolha uma opção: \n"))
+            print(f"Você escolheu: ")
+            if usuario == 1:
+                print("Cadastrar restaurante")
+                cadastrar_restaurante()
+                break
+            elif usuario == 2:
+                print("Listar restaurante")
+                listar_restaurante()
+                break
+            elif usuario == 3:
+                print("Ativar restaurante")
+                break
+            elif usuario == 4:
+                finalizar()
+                break
+            else:
+                opcao_invalida()
+                continue
+    except Exception as erro:
+        print(erro)
+
+def finalizar():
+    os.system('cls')
+    print("\n" * 100)
+    subtitulo('Finalizar Sabor express...')
+
+def main():
+    print("\n" * 100)
+    iniciar()
+    opcoes()
+    input_usuario()
+
+if __name__ == '__main__':
+    main()

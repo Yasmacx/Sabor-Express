@@ -12,7 +12,11 @@ def voltar_menu():
 
 def subtitulo(texto):
     print("\n" * 100)
+    linha = '=' * len(texto)
+    #cada letra do titulo vai ter um *
+    print(linha)
     print(texto)
+    print(linha)
     print()
 
 def iniciar():
@@ -24,7 +28,7 @@ def iniciar():
 def opcoes():
     print("1.Cadastrar restaurante")
     print("2.Listar restaurantes")
-    print("3.Ativar restaurante")
+    print("3.Alterar estado do restaurante")
     print("4.Sair\n")
 
 def cadastrar_restaurante():
@@ -56,8 +60,9 @@ def listar_restaurante():
     for restaurante in restaurantes:
         nome_restaurante = restaurante['nome']
         tipo_restaurante = restaurante['categoria']
-        ativo_restaurante = restaurante['ativo']
-        print(f"- {nome_restaurante} | {tipo_restaurante} | {ativo_restaurante}")
+        ativo_restaurante = 'ativado' if restaurante ['ativo'] else 'desativado'
+        print(f"- {nome_restaurante.ljust(20)} | {tipo_restaurante.ljust(20)} | {ativo_restaurante.ljust(20)}")
+                                    #.ljust() coloca a quantidade de espaçamento, 20 fica parecendo tabela
     voltar_menu()
 
 def opcao_invalida():

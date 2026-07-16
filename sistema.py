@@ -11,7 +11,7 @@ def voltar_menu():
     main()
 
 def subtitulo(texto):
-    print("\n" * 100)
+    print("\n" * 150)
     linha = '=' * len(texto)
     #cada letra do titulo vai ter um *
     print(linha)
